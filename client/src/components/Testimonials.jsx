@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Testimonials.css';
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from 'lucide-react';
 import TestimonialEditor from './TestimonialEditor';
 
 const Testimonials = () => {
@@ -45,7 +45,7 @@ const Testimonials = () => {
 
   return (
     <section className="testimonials-section">
-      <div className="container ">
+      <div className="container">
         <h2
           contentEditable
           suppressContentEditableWarning
@@ -55,12 +55,17 @@ const Testimonials = () => {
           {heading}
         </h2>
         <div className="underline"></div>
-        <div className="testimonial-cards grid grid-cols-3 gap-4  ">
+
+        <div className="testimonial-cards">
           {testimonials.map((item, index) => (
             <div className="testimonial-card" key={index}>
               <div className="card-actions">
-                <button onClick={() => setEditingIndex(index)}><Pencil size={25} /></button>
-                <button onClick={() => handleDelete(index)}><Trash2 size={25} /></button>
+                <button onClick={() => setEditingIndex(index)}>
+                  <Pencil size={20} />
+                </button>
+                <button onClick={() => handleDelete(index)}>
+                  <Trash2 size={20} />
+                </button>
               </div>
               <blockquote>“ {item.text} ”</blockquote>
               <img src={item.image} alt={item.name} className="user-img" />
@@ -73,6 +78,7 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+
       {editingIndex !== null && (
         <TestimonialEditor
           testimonial={testimonials[editingIndex]}

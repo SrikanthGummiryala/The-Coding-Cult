@@ -1,41 +1,69 @@
-import React, { useState } from 'react';
-import './TestimonialEditor.css';
+import React, { useState, useEffect } from 'react';
 
 const TestimonialEditor = ({ testimonial, onSave, onCancel }) => {
-  const [form, setForm] = useState({ ...testimonial });
+  const [formData, setFormData] = useState({ ...testimonial });
+
+  useEffect(() => {
+    setFormData({ ...testimonial });
+  }, [testimonial]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData({ ...formData, image: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(form);
+    onSave(formData);
   };
 
   return (
-    <div className="editor-overlay">
+    <div className="editor-modal">
       <form className="editor-form" onSubmit={handleSubmit}>
-        <h3>Edit Testimonial</h3>
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Name" />
-        <input name="title" value={form.title} onChange={handleChange} placeholder="Title" />
-        <input name="image" value={form.image} onChange={handleChange} placeholder="Image URL" />
-        <textarea name="text" value={form.text} onChange={handleChange} placeholder="Testimonial" />
-        <input
-          type="number"
-          name="stars"
-          value={form.stars}
-          onChange={handleChange}
-          min="1"
-          max="5"
-          placeholder="Stars (1-5)"
-        />
-        <div className="buttons">
+        <label>
+          Name:
+          <input name="name" value={formData.name} onChange={handleChange} required />
+        </label>
+        <label>
+          Title:
+          <input name="title" value={formData.title} onChange={handleChange} required />
+        </label>
+        <label>
+          Testimonial:
+          <textarea name="text" value={formData.text} onChange={handleChange} required />
+        </label>
+        <label>
+          Stars:
+          <input
+            name="stars"
+            type="number"
+            min="1"
+            max="5"
+            value={formData.stars}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Upload Image:
+          <input type="file" accept="image/*" onChange={handleImageChange} />
+        </label>
+        {formData.image && (
+          <img src={formData.image} alt="Preview" className="preview-img" />
+        )}
+        <div className="editor-buttons">
           <button type="submit">Save</button>
-          <button type="button" className="cancel" onClick={onCancel}>
-            Cancel
-          </button>
+          <button type="button" onClick={onCancel}>Cancel</button>
         </div>
       </form>
     </div>
