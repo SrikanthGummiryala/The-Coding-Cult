@@ -55,6 +55,15 @@ const TestimonialEditor = ({ testimonial, onSave, onCancel }) => {
           />
         </label>
         <label>
+          Image URL or Relative Path:
+          <input
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            placeholder="https:// or /images/example.jpg"
+          />
+        </label>
+        <label>
           Upload Image:
           <input type="file" accept="image/*" onChange={handleImageChange} />
         </label>

@@ -9,21 +9,21 @@ const Testimonials = () => {
     {
       name: 'Emily R.',
       title: 'Graphic Designer',
-      image: 'https://randomuser.me/api/portraits/women/65.jpg',
+      image: 'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?semt=ais_hybrid&w=740',
       text: 'This platform absolutely transformed my job search experience!',
       stars: 5,
     },
     {
       name: 'Robert T.',
       title: 'Software Engineer',
-      image: 'https://randomuser.me/api/portraits/men/52.jpg',
+      image: 'https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg', // relative path example
       text: 'I found my dream role in just a week thanks to this website.',
       stars: 5,
     },
     {
       name: 'Sophia L.',
       title: 'HR Manager',
-      image: 'https://randomuser.me/api/portraits/women/47.jpg',
+      image: 'https://www.sakshi.com/gallery_images/2022/12/15/Anchor%20Srimukhi%20New%20House%20Warming%20ceremony%20Photos_6.jpg',
       text: 'Recruiting top talent has never been easier. Highly recommend!',
       stars: 5,
     },
